@@ -246,7 +246,7 @@ const DEFAULT_MEMBERSHIPS: MembershipPlan[] = [
 const DEFAULT_GALLERY: GalleryItem[] = [
   {
     id: "gal-real-1",
-    title: "MNG Gaming Cafe - Official Neon Entrance & Reception",
+    title: "Official Neon Entrance & Reception",
     category: "Café Interior",
     imageUrl: "/images/mng_neon_reception.jpg",
     isFeatured: true
@@ -259,13 +259,6 @@ const DEFAULT_GALLERY: GalleryItem[] = [
     isFeatured: true
   },
   {
-    id: "gal-real-3",
-    title: "High-Spec RGB PC Esports Battle Stations",
-    category: "Gaming Setup",
-    imageUrl: "/images/mng_pc_stations.jpg",
-    isFeatured: true
-  },
-  {
     id: "gal-real-4",
     title: "MNG Gaming Arena - Full Lounge View",
     category: "Café Interior",
@@ -273,25 +266,11 @@ const DEFAULT_GALLERY: GalleryItem[] = [
     isFeatured: true
   },
   {
-    id: "gal-1",
-    title: "Pro Gaming Battle Setup",
+    id: "gal-real-3",
+    title: "High-Spec RGB PC Esports Battle Stations",
     category: "Gaming Setup",
-    imageUrl: "/images/hero.jpg",
-    isFeatured: false
-  },
-  {
-    id: "gal-2",
-    title: "Ambient Lounge Arena",
-    category: "Café Interior",
-    imageUrl: "/images/interior.jpg",
-    isFeatured: false
-  },
-  {
-    id: "gal-3",
-    title: "Community Esports Gathering",
-    category: "Community",
-    imageUrl: "/images/community.jpg",
-    isFeatured: false
+    imageUrl: "/images/mng_pc_stations.jpg",
+    isFeatured: true
   }
 ];
 
@@ -406,7 +385,8 @@ class LocalStorageEngine {
   // Gallery
   getGallery(): GalleryItem[] {
     const items = this.getItem('gallery', DEFAULT_GALLERY);
-    return items.filter(i => i.id !== 'gal-gmaps-1' && i.category !== ('Google Maps Photo' as any));
+    const cleaned = items.filter(i => i.id.startsWith('gal-real-'));
+    return cleaned.length > 0 ? cleaned : DEFAULT_GALLERY;
   }
   saveGallery(data: GalleryItem[]): void {
     this.setItem('gallery', data);
