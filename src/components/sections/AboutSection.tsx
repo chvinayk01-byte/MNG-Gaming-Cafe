@@ -20,7 +20,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ businessInfo }) => {
           <div className="relative">
             <div className="relative z-10 overflow-hidden rounded-3xl border border-[#c8d8e4]/15 bg-[#15242b]/80 p-3 backdrop-blur-xl shadow-2xl">
               <img
-                src="/images/interior.jpg"
+                src="/images/mng_lounge_interior.jpg"
                 alt="MNG Gaming Hub Lounge Interior"
                 className="h-80 w-full rounded-2xl object-cover sm:h-96"
               />

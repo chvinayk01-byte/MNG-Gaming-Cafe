@@ -391,6 +391,13 @@ const DEFAULT_MEMBERSHIPS: MembershipPlan[] = [
 
 const DEFAULT_GALLERY: GalleryItem[] = [
   {
+    id: "gal-real-lounge-interior",
+    title: "MNG Gaming Arena - ANT Esports Battle Lounge & Workstations",
+    category: "Café Interior",
+    imageUrl: "/images/mng_lounge_interior.jpg",
+    isFeatured: true
+  },
+  {
     id: "gal-real-rate-card",
     title: "Official MNG Gaming Cafe Tariff Card Menu",
     category: "Café Interior",
