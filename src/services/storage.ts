@@ -44,73 +44,132 @@ export const VERIFIED_BUSINESS_HOURS: BusinessDayHours[] = [
 const DEFAULT_CATEGORIES: GamingCategory[] = [
   {
     id: "cat-pc",
-    name: "Gaming PCs",
-    description: "High-performance PC gaming stations configured for esports, high FPS competitive titles, and immersive graphics.",
+    name: "PC Gaming",
+    description: "High-FPS Esports PC battle stations with 144Hz/240Hz displays, gaming gear, and preloaded competitive games.",
     image: "/images/mng_pc_stations.jpg",
+    priceStartingAt: 150,
     isAvailable: true,
     stationCount: 10,
     isFeatured: true,
   },
   {
-    id: "cat-console",
-    name: "Console Gaming",
-    description: "Next-gen sofa gaming area ideal for co-op multiplayer, sports, fighting games, and lounge sessions with friends.",
+    id: "cat-ps5",
+    name: "PS 5 Console Lounge",
+    description: "PlayStation 5 sofa gaming lounge. Single player: ₹150 / hr | Double player: ₹200 / hr.",
     image: "/images/mng_pool_lounge.jpg",
+    priceStartingAt: 150,
     isAvailable: true,
     stationCount: 4,
     isFeatured: true,
   },
   {
-    id: "cat-multiplayer",
-    name: "Multiplayer Lounge & Pool",
-    description: "Group battle stations designed for squad gaming, pool/snooker lounge, LAN parties, and friendly tournaments.",
-    image: "/images/mng_full_interior.jpg",
+    id: "cat-ps5-pro",
+    name: "PS 5 PRO Lounge",
+    description: "Ultra high-definition PS5 Pro lounge. Single player: ₹200 / hr | Per Controller: ₹100 / hr.",
+    image: "/images/mng_pool_lounge.jpg",
+    priceStartingAt: 200,
     isAvailable: true,
-    stationCount: 6,
+    stationCount: 2,
+    isFeatured: true,
+  },
+  {
+    id: "cat-snooker",
+    name: "Snooker & Pool Table",
+    description: "Professional full-size snooker and pool table lounge at ₹200 / hr.",
+    image: "/images/mng_full_interior.jpg",
+    priceStartingAt: 200,
+    isAvailable: true,
+    stationCount: 2,
+    isFeatured: true,
+  },
+  {
+    id: "cat-board-games",
+    name: "Board Games Zone",
+    description: "Chess, Jenga, and tabletop board games area at ₹100 / hr.",
+    image: "/images/mng_neon_reception.jpg",
+    priceStartingAt: 100,
+    isAvailable: true,
+    stationCount: 4,
     isFeatured: true,
   }
 ];
 
 const DEFAULT_STATIONS: GamingStation[] = [
   {
-    id: "st-1",
-    name: "Esports PC Station #1",
+    id: "st-pc-1",
+    name: "Esports PC Battle Station #1",
     categoryId: "cat-pc",
     image: "/images/mng_pc_stations.jpg",
     cpu: "High-Performance Multi-Core CPU",
-    gpu: "Dedicated Gaming GPU",
-    ram: "16GB High-Speed DDR4/DDR5",
-    monitor: "High-Refresh Rate Gaming Monitor",
-    refreshRate: "144Hz / 240Hz",
-    headset: "Surround Sound Gaming Headset",
+    gpu: "Dedicated Esports GPU",
+    ram: "16GB DDR4/DDR5 RAM",
+    monitor: "240Hz High-Refresh Gaming Monitor",
+    refreshRate: "240Hz",
+    headset: "Pro Gaming Headset",
     keyboard: "Mechanical RGB Keyboard",
     mouse: "Precision Gaming Mouse",
+    hourlyPrice: 150,
     availability: "available",
     isFeatured: true,
   },
   {
-    id: "st-2",
-    name: "Esports PC Station #2",
+    id: "st-pc-2",
+    name: "Esports PC Battle Station #2",
     categoryId: "cat-pc",
-    image: "/images/mng_full_interior.jpg",
+    image: "/images/mng_pc_stations.jpg",
     cpu: "High-Performance Multi-Core CPU",
-    gpu: "Dedicated Gaming GPU",
+    gpu: "Dedicated Esports GPU",
     ram: "16GB RAM",
-    monitor: "Esports Display",
+    monitor: "144Hz Gaming Display",
     refreshRate: "144Hz",
     headset: "Pro Gaming Headset",
-    keyboard: "Mechanical RGB",
+    keyboard: "Mechanical RGB Keyboard",
     mouse: "Gaming Mouse",
+    hourlyPrice: 150,
     availability: "available",
     isFeatured: true,
   },
   {
-    id: "st-3",
-    name: "Console Zone - Station A",
-    categoryId: "cat-console",
+    id: "st-ps5-1",
+    name: "PS 5 Lounge Zone",
+    categoryId: "cat-ps5",
     image: "/images/mng_pool_lounge.jpg",
-    monitor: "4K HDR Ultra HD Display",
-    headset: "Dual Wireless Controllers & Audio",
+    monitor: "4K Ultra HD Display",
+    headset: "DualSense Controllers",
+    hourlyPrice: 150,
+    otherSpecs: ["Single Player: ₹150 / hr", "Double Player: ₹200 / hr"],
+    availability: "available",
+    isFeatured: true,
+  },
+  {
+    id: "st-ps5pro-1",
+    name: "PS 5 PRO Lounge Zone",
+    categoryId: "cat-ps5-pro",
+    image: "/images/mng_pool_lounge.jpg",
+    monitor: "4K HDR Pro Display",
+    headset: "PS5 Pro DualSense Edge",
+    hourlyPrice: 200,
+    otherSpecs: ["Single Player: ₹200 / hr", "Per Controller: ₹100 / hr"],
+    availability: "available",
+    isFeatured: true,
+  },
+  {
+    id: "st-snooker-1",
+    name: "Snooker & Pool Table",
+    categoryId: "cat-snooker",
+    image: "/images/mng_full_interior.jpg",
+    hourlyPrice: 200,
+    otherSpecs: ["Professional Cues & Balls", "₹200 / hr"],
+    availability: "available",
+    isFeatured: true,
+  },
+  {
+    id: "st-board-1",
+    name: "Board Games Table (Chess / Jenga)",
+    categoryId: "cat-board-games",
+    image: "/images/mng_neon_reception.jpg",
+    hourlyPrice: 100,
+    otherSpecs: ["Chess, Jenga, Cards", "₹100 / hr"],
     availability: "available",
     isFeatured: true,
   }
@@ -118,29 +177,116 @@ const DEFAULT_STATIONS: GamingStation[] = [
 
 const DEFAULT_PRICING: PricingPlan[] = [
   {
-    id: "pr-1",
-    name: "Quick Game (1 Hour)",
+    id: "pr-pc-1h",
+    name: "PC Gaming - 1 Hour",
     duration: "1 Hour",
-    description: "Perfect for a quick match or warm-up session.",
+    price: 150,
+    description: "High FPS competitive PC gaming session.",
     applicableDays: "Monday - Sunday",
     isFeatured: false,
     isActive: true,
   },
   {
-    id: "pr-2",
-    name: "Gamer Pass (3 Hours)",
+    id: "pr-pc-3h",
+    name: "PC Gaming - 3 Hours Pass",
     duration: "3 Hours",
-    description: "Best value for extended squad gaming and competitive sessions.",
+    price: 250,
+    discount: "Save ₹200",
+    description: "Best value for squad sessions and ranked grinding.",
     applicableDays: "Monday - Sunday",
     isFeatured: true,
     isActive: true,
   },
   {
-    id: "pr-3",
-    name: "Day Grind Pass",
-    duration: "5+ Hours",
-    description: "Ultimate marathon pass for serious gamers and tournament training.",
-    applicableDays: "Monday - Saturday",
+    id: "pr-pc-5h",
+    name: "PC Gaming - 5 Hours Pass",
+    duration: "5 Hours",
+    price: 400,
+    discount: "Save ₹350",
+    description: "Extended marathon pass for serious gamers.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-pc-8h",
+    name: "PC Gaming - 8 Hours Pass",
+    duration: "8 Hours",
+    price: 550,
+    discount: "Save ₹650",
+    description: "All-day gaming pass for long competitive sessions.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-day-pass",
+    name: "Unlimited Day Pass",
+    duration: "Full Day",
+    price: 700,
+    discount: "Best Value",
+    description: "Full day access to PC gaming & cafe facilities.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: true,
+    isActive: true,
+  },
+  {
+    id: "pr-ps5-single",
+    name: "PS 5 - Single Player",
+    duration: "1 Hour",
+    price: 150,
+    description: "PS5 solo gaming session per hour.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-ps5-double",
+    name: "PS 5 - Double Player",
+    duration: "1 Hour",
+    price: 200,
+    description: "PS5 2-player co-op / 1v1 lounge gaming session per hour.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-ps5pro-single",
+    name: "PS 5 PRO - Single Player",
+    duration: "1 Hour",
+    price: 200,
+    description: "Next-gen PS5 Pro solo gaming session per hour.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-ps5pro-controller",
+    name: "PS 5 PRO - Extra Controller",
+    duration: "1 Hour",
+    price: 100,
+    description: "Additional controller for PS5 Pro per hour.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-snooker",
+    name: "Snooker / Pool Table",
+    duration: "1 Hour",
+    price: 200,
+    description: "Snooker & pool table access per hour.",
+    applicableDays: "Monday - Sunday",
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: "pr-board",
+    name: "Any Board Game",
+    duration: "1 Hour",
+    price: 100,
+    description: "Chess, Jenga, and tabletop games per hour.",
+    applicableDays: "Monday - Sunday",
     isFeatured: false,
     isActive: true,
   }
@@ -150,7 +296,7 @@ const DEFAULT_GAMES: Game[] = [
   {
     id: "gm-1",
     name: "VALORANT",
-    coverImage: "/images/community.jpg",
+    coverImage: "/images/mng_pc_stations.jpg",
     genre: "FPS",
     platform: "PC",
     mode: "multiplayer",
@@ -161,7 +307,7 @@ const DEFAULT_GAMES: Game[] = [
   {
     id: "gm-2",
     name: "Counter-Strike 2",
-    coverImage: "/images/interior.jpg",
+    coverImage: "/images/mng_pc_stations.jpg",
     genre: "FPS",
     platform: "PC",
     mode: "multiplayer",
@@ -172,7 +318,7 @@ const DEFAULT_GAMES: Game[] = [
   {
     id: "gm-3",
     name: "EA SPORTS FC / FIFA",
-    coverImage: "/images/hero.jpg",
+    coverImage: "/images/mng_pool_lounge.jpg",
     genre: "Sports",
     platform: "Console / PC",
     mode: "multiplayer",
@@ -182,13 +328,13 @@ const DEFAULT_GAMES: Game[] = [
   },
   {
     id: "gm-4",
-    name: "Tekken / Fighting Lounge",
-    coverImage: "/images/interior.jpg",
-    genre: "Fighting",
+    name: "Tekken 8 / Spider-Man 2",
+    coverImage: "/images/mng_pool_lounge.jpg",
+    genre: "Fighting / Action",
     platform: "Console / PC",
     mode: "multiplayer",
     maxPlayers: 2,
-    description: "High-octane 1v1 fighting games for intense couch duels.",
+    description: "High-octane 1v1 fighting and action games for intense lounge duels.",
     isAvailable: true,
   }
 ];
@@ -209,17 +355,17 @@ const DEFAULT_TOURNAMENTS: Tournament[] = [
       "Bring your own gear allowed or use cafe setups",
       "Fair play & sportsmanship rules strictly enforced"
     ],
-    image: "/images/hero.jpg"
+    image: "/images/mng_pc_stations.jpg"
   }
 ];
 
 const DEFAULT_MEMBERSHIPS: MembershipPlan[] = [
   {
     id: "mem-1",
-    name: "Rookie Member",
+    name: "Rookie Pass Member",
     validity: "1 Month",
     benefits: [
-      "Discounted hourly rates",
+      "Special hourly rates on PC & PS5",
       "Priority seat reservations",
       "Member-only discord access"
     ],
@@ -232,7 +378,7 @@ const DEFAULT_MEMBERSHIPS: MembershipPlan[] = [
     name: "Pro Esports Member",
     validity: "3 Months",
     benefits: [
-      "Maximum discount on all sessions",
+      "Maximum discount on all PC & PS5 sessions",
       "Free tournament entry pass",
       "Dedicated PC reservation preference",
       "Bonus gaming hours on weekends"
@@ -244,6 +390,13 @@ const DEFAULT_MEMBERSHIPS: MembershipPlan[] = [
 ];
 
 const DEFAULT_GALLERY: GalleryItem[] = [
+  {
+    id: "gal-real-rate-card",
+    title: "Official MNG Gaming Cafe Tariff Card Menu",
+    category: "Café Interior",
+    imageUrl: "/images/mng_rate_card.jpg",
+    isFeatured: true
+  },
   {
     id: "gal-real-1",
     title: "Official Neon Entrance & Reception",
@@ -328,7 +481,11 @@ class LocalStorageEngine {
 
   // Categories
   getCategories(): GamingCategory[] {
-    return this.getItem('categories', DEFAULT_CATEGORIES);
+    const items = this.getItem('categories', DEFAULT_CATEGORIES);
+    if (!items.some(i => i.id === 'cat-ps5' || i.id === 'cat-ps5-pro')) {
+      return DEFAULT_CATEGORIES;
+    }
+    return items;
   }
   saveCategories(data: GamingCategory[]): void {
     this.setItem('categories', data);
@@ -336,7 +493,11 @@ class LocalStorageEngine {
 
   // Stations
   getStations(): GamingStation[] {
-    return this.getItem('stations', DEFAULT_STATIONS);
+    const items = this.getItem('stations', DEFAULT_STATIONS);
+    if (!items.some(i => i.id === 'st-ps5-1')) {
+      return DEFAULT_STATIONS;
+    }
+    return items;
   }
   saveStations(data: GamingStation[]): void {
     this.setItem('stations', data);
@@ -344,7 +505,11 @@ class LocalStorageEngine {
 
   // Pricing
   getPricing(): PricingPlan[] {
-    return this.getItem('pricing', DEFAULT_PRICING);
+    const items = this.getItem('pricing', DEFAULT_PRICING);
+    if (!items.some(i => i.id === 'pr-pc-1h' || i.id === 'pr-day-pass')) {
+      return DEFAULT_PRICING;
+    }
+    return items;
   }
   savePricing(data: PricingPlan[]): void {
     this.setItem('pricing', data);
