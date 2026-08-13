@@ -14,14 +14,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ businessInfo }) => {
       <div className="absolute inset-0 bg-radial-gradient opacity-90" />
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
       
-      {/* Generated Cafe Interior Image Background */}
-      <div className="absolute inset-0 z-0 opacity-30 mix-blend-luminosity">
+      {/* Cafe Interior Background Image */}
+      <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity pointer-events-none">
         <img
-          src="/images/hero.jpg"
-          alt="MNG Gaming Cafe Interior"
+          src="/images/mng_lounge_interior.jpg"
+          alt=""
           className="h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e181c] via-[#0e181c]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0e181c] via-[#0e181c]/80 to-[#0e181c]/50" />
       </div>
 
       {/* Decorative Neon Spheres */}
