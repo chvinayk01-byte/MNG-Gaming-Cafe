@@ -398,13 +398,6 @@ const DEFAULT_GALLERY: GalleryItem[] = [
     isFeatured: true
   },
   {
-    id: "gal-real-rate-card",
-    title: "Official MNG Gaming Cafe Tariff Card Menu",
-    category: "Café Interior",
-    imageUrl: "/images/mng_rate_card.jpg",
-    isFeatured: true
-  },
-  {
     id: "gal-real-1",
     title: "Official Neon Entrance & Reception",
     category: "Café Interior",

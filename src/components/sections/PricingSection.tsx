@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Tag, Clock, Check, Sparkles, Zap, Image as ImageIcon, X, Maximize2 } from 'lucide-react';
+import React from 'react';
+import { Tag, Clock, Check, Sparkles, Zap } from 'lucide-react';
 import { PricingPlan, BusinessInfo } from '../../types';
 
 interface PricingSectionProps {
@@ -8,7 +8,6 @@ interface PricingSectionProps {
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessInfo }) => {
-  const [showMenuCard, setShowMenuCard] = useState(false);
   const activePlans = plans.filter((p) => p.isActive);
 
   return (
@@ -16,28 +15,16 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessI
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#52ab98]/30 bg-[#52ab98]/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#52ab98] mb-3">
-            <Tag className="h-4 w-4" /> Official Tariff Card & Rates
+            <Tag className="h-4 w-4" /> Pricing & Packages
           </div>
           <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-5xl">
             PRICING & <span className="text-[#52ab98]">RATES MENU</span>
           </h2>
           <p className="mt-3 text-sm text-[#c8d8e4]">
-            Official rate menu card for PC Gaming, PS5, PS5 Pro, Snooker & Board Games at MNG Gaming Cafe.
+            Official rates for PC Gaming, PS5, PS5 Pro, Snooker & Board Games at MNG Gaming Cafe.
           </p>
-
-          {/* Rate Menu Card Preview Action */}
-          <div className="mt-6">
-            <button
-              onClick={() => setShowMenuCard(true)}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2b6777] to-[#52ab98] px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-teal-glow hover:scale-105 transition-all cursor-pointer"
-            >
-              <ImageIcon className="h-4 w-4 text-white" />
-              <span>View Official Rate Card Image</span>
-              <Maximize2 className="h-3.5 w-3.5" />
-            </button>
-          </div>
         </div>
 
         {/* Pricing Cards Grid */}
@@ -137,34 +124,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessI
         )}
 
       </div>
-
-      {/* Official Rate Card Lightbox Modal */}
-      {showMenuCard && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
-          <div className="relative max-w-4xl w-full">
-            <button
-              onClick={() => setShowMenuCard(false)}
-              className="absolute -top-12 right-0 text-slate-400 hover:text-white p-2"
-            >
-              <X className="h-8 w-8" />
-            </button>
-
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0e181c] p-2 shadow-2xl">
-              <img
-                src="/images/mng_rate_card.jpg"
-                alt="Official MNG Gaming Cafe Tariff Card Menu"
-                className="w-full max-h-[80vh] object-contain rounded-xl"
-              />
-            </div>
-
-            <div className="mt-4 text-center">
-              <h3 className="font-heading text-lg font-bold text-white">Official MNG Gaming Cafe Tariff Card</h3>
-              <p className="text-xs text-[#52ab98] uppercase font-bold">House No. 7-49, Konark Theatre Lane, Dilsukhnagar, Hyd</p>
-            </div>
-          </div>
-        </div>
-      )}
-
     </section>
   );
+};;
 };
