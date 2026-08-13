@@ -126,5 +126,4 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessI
       </div>
     </section>
   );
-};;
 };
