@@ -444,8 +444,68 @@ const DEFAULT_BOOKINGS: Booking[] = [
   }
 ];
 
-// Helper to interact with LocalStorage
-class LocalStorageEngine {
+import { pushToCloudStore, pullFromCloudStore, SyncDataType } from './cloudSync';
+
+type DataChangeListener = (key: SyncDataType, data: any) => void;
+
+// Helper to interact with LocalStorage & Realtime Cloud Engine
+class RealtimeCloudStorageEngine {
+  private listeners: Set<DataChangeListener> = new Set();
+  private broadcastChannel: BroadcastChannel | null = null;
+  private isSyncing = false;
+
+  constructor() {
+    if (typeof window !== 'undefined') {
+      if ('BroadcastChannel' in window) {
+        this.broadcastChannel = new BroadcastChannel('mng_realtime_channel');
+        this.broadcastChannel.onmessage = (event) => {
+          if (event.data && event.data.key) {
+            this.notifyLocalListeners(event.data.key as SyncDataType, event.data.value, false);
+          }
+        };
+      }
+
+      window.addEventListener('storage', (e) => {
+        if (e.key && e.key.startsWith('mng_')) {
+          const key = e.key.replace('mng_', '') as SyncDataType;
+          try {
+            const data = e.newValue ? JSON.parse(e.newValue) : null;
+            this.notifyLocalListeners(key, data, false);
+          } catch {
+            // silent catch
+          }
+        }
+      });
+
+      // Poll cloud store every 2.5 seconds for live multi-device real-time sync
+      this.initRealtimeCloudPoll();
+    }
+  }
+
+  // Subscribe to live data changes across app
+  subscribe(listener: DataChangeListener): () => void {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  }
+
+  private notifyLocalListeners(key: SyncDataType, data: any, broadcast = true): void {
+    this.listeners.forEach(cb => {
+      try {
+        cb(key, data);
+      } catch (err) {
+        console.error('Listener callback error:', err);
+      }
+    });
+
+    if (broadcast && this.broadcastChannel) {
+      try {
+        this.broadcastChannel.postMessage({ key, value: data, time: Date.now() });
+      } catch (err) {
+        // silent catch
+      }
+    }
+  }
+
   private getItem<T>(key: string, fallback: T): T {
     try {
       const item = localStorage.getItem(`mng_${key}`);
@@ -455,12 +515,61 @@ class LocalStorageEngine {
     }
   }
 
-  private setItem<T>(key: string, value: T): void {
+  private setItem<T>(key: SyncDataType, value: T): void {
     try {
       localStorage.setItem(`mng_${key}`, JSON.stringify(value));
+      this.notifyLocalListeners(key, value, true);
+      // Asynchronously push to shared cloud store for cross-device live sync
+      pushToCloudStore(key, value);
     } catch (err) {
-      console.error('LocalStorage error:', err);
+      console.error('Storage error:', err);
     }
+  }
+
+  // Hydrate & Sync all entities from Cloud Store
+  private async initRealtimeCloudPoll(): Promise<void> {
+    const keys: SyncDataType[] = [
+      'contact_messages',
+      'pricing',
+      'categories',
+      'stations',
+      'business_info',
+      'business_hours',
+      'gallery',
+      'bookings',
+      'tournaments'
+    ];
+
+    const syncKeys = async () => {
+      if (this.isSyncing) return;
+      this.isSyncing = true;
+
+      for (const key of keys) {
+        try {
+          const cloudData = await pullFromCloudStore(key);
+          if (cloudData) {
+            const localRaw = localStorage.getItem(`mng_${key}`);
+            const localStr = localRaw || '';
+            const cloudStr = JSON.stringify(cloudData);
+
+            if (localStr !== cloudStr) {
+              localStorage.setItem(`mng_${key}`, cloudStr);
+              this.notifyLocalListeners(key, cloudData, true);
+            }
+          }
+        } catch {
+          // Keep current local data
+        }
+      }
+
+      this.isSyncing = false;
+    };
+
+    // Initial sync call
+    syncKeys();
+
+    // Recurring 2.5-second live polling loop for instant cross-device updates
+    setInterval(syncKeys, 2500);
   }
 
   // Business Info
@@ -574,7 +683,7 @@ class LocalStorageEngine {
   }
 }
 
-export const db = new LocalStorageEngine();
+export const db = new RealtimeCloudStorageEngine();
 
 // Calculate open / closed status for Hyderabad timezone (IST / UTC+5:30)
 export function getStoreStatus(info: BusinessInfo, hoursList: BusinessDayHours[]): {

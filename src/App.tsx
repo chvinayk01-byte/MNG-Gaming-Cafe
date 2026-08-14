@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
@@ -52,6 +52,50 @@ export function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
+
+  // Subscribe to real-time live data updates (Admin & User split-second synchronization)
+  useEffect(() => {
+    const unsubscribe = db.subscribe((key, data) => {
+      if (!data) return;
+      switch (key) {
+        case 'business_info':
+          setBusinessInfo(data);
+          break;
+        case 'business_hours':
+          setBusinessHours(data);
+          break;
+        case 'categories':
+          setCategories(data);
+          break;
+        case 'stations':
+          setStations(data);
+          break;
+        case 'pricing':
+          setPlans(data);
+          break;
+        case 'bookings':
+          setBookings(data);
+          break;
+        case 'games':
+          setGames(data);
+          break;
+        case 'tournaments':
+          setTournaments(data);
+          break;
+        case 'memberships':
+          setMemberships(data);
+          break;
+        case 'gallery':
+          setGallery(data);
+          break;
+        case 'contact_messages':
+          setMessages(data);
+          break;
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   if (isAdminMode) {
     return (
