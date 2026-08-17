@@ -444,15 +444,13 @@ const DEFAULT_BOOKINGS: Booking[] = [
   }
 ];
 
-import { pushToCloudStore, pullFromCloudStore, SyncDataType } from './cloudSync';
+import { realtimeEngine, RealtimeEntityKey } from './realtimeEngine';
 
-type DataChangeListener = (key: SyncDataType, data: any) => void;
+type DataChangeListener = (key: RealtimeEntityKey, data: any) => void;
 
 // Helper to interact with LocalStorage & Realtime Cloud Engine
 class RealtimeCloudStorageEngine {
-  private listeners: Set<DataChangeListener> = new Set();
   private broadcastChannel: BroadcastChannel | null = null;
-  private isSyncing = false;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -460,14 +458,14 @@ class RealtimeCloudStorageEngine {
         this.broadcastChannel = new BroadcastChannel('mng_realtime_channel');
         this.broadcastChannel.onmessage = (event) => {
           if (event.data && event.data.key) {
-            this.notifyLocalListeners(event.data.key as SyncDataType, event.data.value, false);
+            this.notifyLocalListeners(event.data.key as RealtimeEntityKey, event.data.value, false);
           }
         };
       }
 
       window.addEventListener('storage', (e) => {
         if (e.key && e.key.startsWith('mng_')) {
-          const key = e.key.replace('mng_', '') as SyncDataType;
+          const key = e.key.replace('mng_', '') as RealtimeEntityKey;
           try {
             const data = e.newValue ? JSON.parse(e.newValue) : null;
             this.notifyLocalListeners(key, data, false);
@@ -477,26 +475,29 @@ class RealtimeCloudStorageEngine {
         }
       });
 
-      // Poll cloud store every 2.5 seconds for live multi-device real-time sync
-      this.initRealtimeCloudPoll();
+      // Subscribe to global online WebSocket & SSE Realtime events
+      realtimeEngine.subscribe((key, data) => {
+        if (!data) return;
+        try {
+          const localStr = localStorage.getItem(`mng_${key}`) || '';
+          const newStr = JSON.stringify(data);
+          if (localStr !== newStr) {
+            localStorage.setItem(`mng_${key}`, newStr);
+            this.notifyLocalListeners(key, data, false);
+          }
+        } catch {
+          // silent catch
+        }
+      });
     }
   }
 
   // Subscribe to live data changes across app
   subscribe(listener: DataChangeListener): () => void {
-    this.listeners.add(listener);
-    return () => this.listeners.delete(listener);
+    return realtimeEngine.subscribe(listener);
   }
 
-  private notifyLocalListeners(key: SyncDataType, data: any, broadcast = true): void {
-    this.listeners.forEach(cb => {
-      try {
-        cb(key, data);
-      } catch (err) {
-        console.error('Listener callback error:', err);
-      }
-    });
-
+  private notifyLocalListeners(key: RealtimeEntityKey, data: any, broadcast = true): void {
     if (broadcast && this.broadcastChannel) {
       try {
         this.broadcastChannel.postMessage({ key, value: data, time: Date.now() });
@@ -515,61 +516,15 @@ class RealtimeCloudStorageEngine {
     }
   }
 
-  private setItem<T>(key: SyncDataType, value: T): void {
+  private setItem<T>(key: RealtimeEntityKey, value: T): void {
     try {
       localStorage.setItem(`mng_${key}`, JSON.stringify(value));
       this.notifyLocalListeners(key, value, true);
-      // Asynchronously push to shared cloud store for cross-device live sync
-      pushToCloudStore(key, value);
+      // Broadcast online change across all devices in real-time WebSockets / SSE
+      realtimeEngine.broadcastOnlineChange(key, value);
     } catch (err) {
       console.error('Storage error:', err);
     }
-  }
-
-  // Hydrate & Sync all entities from Cloud Store
-  private async initRealtimeCloudPoll(): Promise<void> {
-    const keys: SyncDataType[] = [
-      'contact_messages',
-      'pricing',
-      'categories',
-      'stations',
-      'business_info',
-      'business_hours',
-      'gallery',
-      'bookings',
-      'tournaments'
-    ];
-
-    const syncKeys = async () => {
-      if (this.isSyncing) return;
-      this.isSyncing = true;
-
-      for (const key of keys) {
-        try {
-          const cloudData = await pullFromCloudStore(key);
-          if (cloudData) {
-            const localRaw = localStorage.getItem(`mng_${key}`);
-            const localStr = localRaw || '';
-            const cloudStr = JSON.stringify(cloudData);
-
-            if (localStr !== cloudStr) {
-              localStorage.setItem(`mng_${key}`, cloudStr);
-              this.notifyLocalListeners(key, cloudData, true);
-            }
-          }
-        } catch {
-          // Keep current local data
-        }
-      }
-
-      this.isSyncing = false;
-    };
-
-    // Initial sync call
-    syncKeys();
-
-    // Recurring 2.5-second live polling loop for instant cross-device updates
-    setInterval(syncKeys, 2500);
   }
 
   // Business Info

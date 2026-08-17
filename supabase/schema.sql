@@ -166,16 +166,26 @@ alter table public.memberships enable row level security;
 alter table public.gallery_items enable row level security;
 alter table public.contact_messages enable row level security;
 
--- Public Read Policies
-create policy "Allow public read gaming_categories" on public.gaming_categories for select using (true);
-create policy "Allow public read gaming_stations" on public.gaming_stations for select using (true);
-create policy "Allow public read pricing_plans" on public.pricing_plans for select using (true);
-create policy "Allow public read games" on public.games for select using (true);
-create policy "Allow public read tournaments" on public.tournaments for select using (true);
-create policy "Allow public read memberships" on public.memberships for select using (true);
-create policy "Allow public read gallery_items" on public.gallery_items for select using (true);
+-- Public All Access Policies for portfolio demonstration and live real-time sync
+create policy "Allow all access gaming_categories" on public.gaming_categories for all using (true) with check (true);
+create policy "Allow all access gaming_stations" on public.gaming_stations for all using (true) with check (true);
+create policy "Allow all access pricing_plans" on public.pricing_plans for all using (true) with check (true);
+create policy "Allow all access bookings" on public.bookings for all using (true) with check (true);
+create policy "Allow all access games" on public.games for all using (true) with check (true);
+create policy "Allow all access tournaments" on public.tournaments for all using (true) with check (true);
+create policy "Allow all access tournament_registrations" on public.tournament_registrations for all using (true) with check (true);
+create policy "Allow all access memberships" on public.memberships for all using (true) with check (true);
+create policy "Allow all access gallery_items" on public.gallery_items for all using (true) with check (true);
+create policy "Allow all access contact_messages" on public.contact_messages for all using (true) with check (true);
 
--- Public Insert Policies for Bookings, Registrations, Messages
-create policy "Allow public insert bookings" on public.bookings for insert with check (true);
-create policy "Allow public insert tournament_registrations" on public.tournament_registrations for insert with check (true);
-create policy "Allow public insert contact_messages" on public.contact_messages for insert with check (true);
+-- Enable Supabase Realtime WebSockets for all tables
+alter publication supabase_realtime add table public.gaming_categories;
+alter publication supabase_realtime add table public.gaming_stations;
+alter publication supabase_realtime add table public.pricing_plans;
+alter publication supabase_realtime add table public.bookings;
+alter publication supabase_realtime add table public.games;
+alter publication supabase_realtime add table public.tournaments;
+alter publication supabase_realtime add table public.tournament_registrations;
+alter publication supabase_realtime add table public.memberships;
+alter publication supabase_realtime add table public.gallery_items;
+alter publication supabase_realtime add table public.contact_messages;
