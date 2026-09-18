@@ -47,10 +47,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessI
             {activePlans.map((plan) => (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-3xl border p-6 sm:p-8 transition-all duration-300 ${
+                className={`relative flex flex-col justify-between rounded-3xl border p-6 sm:p-8 transition-all duration-300 hover:-translate-y-2 cursor-pointer ${
                   plan.isFeatured
-                    ? 'border-[#52ab98] bg-[#132128] shadow-teal-glow z-10'
-                    : 'border-[#c8d8e4]/15 bg-[#132128]/70 hover:border-[#52ab98]/40'
+                    ? 'border-[#52ab98] bg-[#132128] shadow-teal-glow z-10 hover:shadow-[0_20px_40px_-10px_rgba(82,171,152,0.5)]'
+                    : 'border-[#c8d8e4]/15 bg-[#132128]/70 hover:border-[#52ab98]/60 hover:shadow-[0_15px_35px_-10px_rgba(82,171,152,0.3)]'
                 }`}
               >
                 {plan.isFeatured && (

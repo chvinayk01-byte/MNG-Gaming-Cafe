@@ -21,16 +21,16 @@ export const QuickInfoBar: React.FC<QuickInfoBarProps> = ({ businessInfo, busine
           href={businessInfo.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all hover:border-amber-400/40 hover:bg-amber-400/5"
+          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-amber-400/50 hover:bg-amber-400/10 hover:shadow-[0_8px_20px_-4px_rgba(251,191,36,0.3)] cursor-pointer"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400 group-hover:scale-110 transition-transform">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400 group-hover:scale-125 transition-transform duration-300">
             <Star className="h-5 w-5 fill-amber-400" />
           </div>
           <div className="text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-1 font-heading text-lg font-extrabold text-white">
               5.0 <span className="text-xs text-amber-400">★★★★★</span>
             </div>
-            <div className="text-xs text-slate-400">Google Rating</div>
+            <div className="text-xs text-slate-400 group-hover:text-amber-200 transition-colors">Google Rating</div>
           </div>
         </a>
 
@@ -39,41 +39,41 @@ export const QuickInfoBar: React.FC<QuickInfoBarProps> = ({ businessInfo, busine
           href={businessInfo.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all hover:border-neon-cyan/40 hover:bg-neon-cyan/5"
+          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[#52ab98]/50 hover:bg-[#52ab98]/10 hover:shadow-[0_8px_20px_-4px_rgba(82,171,152,0.3)] cursor-pointer"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan group-hover:scale-110 transition-transform">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10 text-neon-cyan group-hover:scale-125 transition-transform duration-300">
             <MessageSquare className="h-5 w-5" />
           </div>
           <div className="text-center sm:text-left">
             <div className="font-heading text-lg font-extrabold text-white">
               60+
             </div>
-            <div className="text-xs text-slate-400">Google Reviews</div>
+            <div className="text-xs text-slate-400 group-hover:text-emerald-200 transition-colors">Google Reviews</div>
           </div>
         </a>
 
         {/* Card 3: Location */}
         <a
           href="#location"
-          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all hover:border-neon-green/40 hover:bg-neon-green/5"
+          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[#52ab98]/50 hover:bg-[#52ab98]/10 hover:shadow-[0_8px_20px_-4px_rgba(82,171,152,0.3)] cursor-pointer"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-green/10 text-neon-green group-hover:scale-110 transition-transform">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-green/10 text-neon-green group-hover:scale-125 transition-transform duration-300">
             <MapPin className="h-5 w-5" />
           </div>
           <div className="text-center sm:text-left">
             <div className="font-heading text-sm font-bold text-white line-clamp-1">
               Dilsukhnagar
             </div>
-            <div className="text-xs text-slate-400">Hyderabad, Telangana</div>
+            <div className="text-xs text-slate-400 group-hover:text-emerald-200 transition-colors">Hyderabad, Telangana</div>
           </div>
         </a>
 
         {/* Card 4: Hours Trigger */}
         <button
           onClick={() => setShowHoursModal(true)}
-          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all hover:border-neon-purple/40 hover:bg-neon-purple/5 text-left"
+          className="group flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3.5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[#2b6777]/60 hover:bg-[#2b6777]/20 hover:shadow-[0_8px_20px_-4px_rgba(43,103,119,0.4)] text-left cursor-pointer"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-purple/10 text-neon-purple group-hover:scale-110 transition-transform">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-neon-purple/10 text-neon-purple group-hover:scale-125 transition-transform duration-300">
             <Clock className="h-5 w-5" />
           </div>
           <div className="text-center sm:text-left">
@@ -81,7 +81,7 @@ export const QuickInfoBar: React.FC<QuickInfoBarProps> = ({ businessInfo, busine
               <span className={`h-2 w-2 rounded-full ${status.isOpen ? 'bg-neon-green animate-pulse' : 'bg-neon-pink'}`} />
               <span>{status.isOpen ? 'OPEN NOW' : 'CLOSED'}</span>
             </div>
-            <div className="text-xs text-slate-400 underline decoration-dotted">View Schedule</div>
+            <div className="text-xs text-slate-400 underline decoration-dotted group-hover:text-cyan-200 transition-colors">View Schedule</div>
           </div>
         </button>
 

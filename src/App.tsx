@@ -166,12 +166,6 @@ export function App() {
 
         <GamesSection games={games} />
 
-        <TournamentsSection tournaments={tournaments} />
-
-        <MembershipSection
-          memberships={memberships}
-          businessInfo={businessInfo}
-        />
 
         <GallerySection items={gallery} businessInfo={businessInfo} />
 

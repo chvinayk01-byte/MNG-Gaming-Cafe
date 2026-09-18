@@ -10,7 +10,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({ games }) => {
   const [search, setSearch] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
 
-  const genres = ['All', 'FPS', 'Sports', 'Fighting', 'Racing', 'Battle Royale', 'Adventure'];
+  const genres = ['All', 'FPS', 'Sports'];
 
   const availableGames = games.filter((g) => g.isAvailable);
 
@@ -84,7 +84,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({ games }) => {
             {filteredGames.map((game) => (
               <div
                 key={game.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-dark-900/90 transition-all duration-300 hover:border-neon-cyan/40 hover:-translate-y-1 shadow-xl flex flex-col justify-between"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-dark-900/90 transition-all duration-300 hover:border-[#52ab98]/60 hover:-translate-y-2 hover:shadow-[0_15px_35px_-10px_rgba(82,171,152,0.3)] shadow-xl flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   <div className="relative h-48 w-full overflow-hidden bg-dark-800">

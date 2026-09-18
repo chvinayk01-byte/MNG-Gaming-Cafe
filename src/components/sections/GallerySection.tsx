@@ -11,7 +11,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ items, businessI
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxImage, setLightboxImage] = useState<GalleryItem | null>(null);
 
-  const categories = ['All', 'Café Interior', 'Gaming Setup', 'Tournaments', 'Community'];
+  const categories = ['All', 'Café Interior', 'Gaming Setup'];
 
   const filteredItems = items.filter((item) =>
     selectedCategory === 'All' ? true : item.category === selectedCategory

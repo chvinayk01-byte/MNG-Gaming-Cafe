@@ -11,6 +11,7 @@
     background-color: #0e181c;
     color: #f2f2f2;
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
 }
 
@@ -31,6 +32,13 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(200, 216, 228, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(82, 171, 152, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(82, 171, 152, 0.25);
+  transform: translateY(-2px);
 }
 
 .glass-panel-glow {
@@ -38,6 +46,13 @@
   backdrop-filter: blur(16px);
   border: 1px solid rgba(82, 171, 152, 0.3);
   box-shadow: 0 0 30px rgba(82, 171, 152, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-glow:hover {
+  border-color: rgba(82, 171, 152, 0.6);
+  box-shadow: 0 0 40px rgba(82, 171, 152, 0.3);
+  transform: translateY(-3px);
 }
 
 /* Custom Scrollbar */
@@ -79,4 +94,50 @@
 
 .text-theme-ice {
   color: #c8d8e4;
+}
+
+/* Interactive Hover Utilities */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -15px rgba(82, 171, 152, 0.25);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(82, 171, 152, 0.4);
+  border-color: rgba(82, 171, 152, 0.6);
+}
+
+/* Shimmer Light Sweep Effect for Buttons */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.8s ease-in-out;
+}
+
+.btn-shimmer:hover::after {
+  transform: rotate(30deg) translateX(100%);
 }

@@ -22,8 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Pricing', href: '#pricing' },
     { name: 'Games', href: '#games' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Tournaments', href: '#tournaments' },
-    { name: 'Membership', href: '#membership' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -61,9 +59,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-semibold uppercase tracking-wider text-[#c8d8e4]/90 transition-colors hover:text-[#52ab98]"
+              className="relative text-xs font-semibold uppercase tracking-wider text-[#c8d8e4]/90 transition-all duration-300 hover:text-[#52ab98] hover:scale-105 group py-1"
             >
-              {link.name}
+              <span>{link.name}</span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#52ab98] transition-all duration-300 group-hover:w-full rounded-full shadow-[0_0_8px_#52ab98]" />
             </a>
           ))}
         </nav>
@@ -75,10 +74,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             href={`https://wa.me/${businessInfo.phone.replace(/[^0-9]/g, '')}?text=Hi%20MNG%20Gaming%20Cafe,%20I%20want%20to%20enquire%20about%20a%20gaming%20session.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group overflow-hidden rounded-xl bg-gradient-to-r from-[#2b6777] to-[#52ab98] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-teal-glow transition-all duration-300 hover:scale-105 active:scale-95"
+            className="btn-shimmer relative group overflow-hidden rounded-xl bg-gradient-to-r from-[#2b6777] to-[#52ab98] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-teal-glow transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(82,171,152,0.5)] active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <MessageSquare className="h-4 w-4" />
+              <MessageSquare className="h-4 w-4 transition-transform group-hover:rotate-12" />
               WHATSAPP US
             </span>
             <div className="absolute inset-0 bg-white/20 transition-transform -translate-x-full group-hover:translate-x-0" />

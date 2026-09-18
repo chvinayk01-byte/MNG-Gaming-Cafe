@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
             
             <p className="text-sm text-[#c8d8e4]/80 leading-relaxed">
-              Play. Compete. Connect. Your premier local gaming destination in Dilsukhnagar, Hyderabad built for squad battles and casual lounge fun.
+              Play. Compete. Connect. Your premium local gaming destination in Dilsukhnagar, Hyderabad built for squad battles and casual lounge fun.
             </p>
 
             <div className="pt-2">
@@ -57,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({
               Navigation
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
-              {['Home', 'Gaming', 'Setups', 'Pricing', 'Games', 'Gallery', 'Tournaments', 'Membership', 'Contact'].map((item) => (
+              {['Home', 'Gaming', 'Setups', 'Pricing', 'Games', 'Gallery', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}

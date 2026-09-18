@@ -33,7 +33,7 @@ export const GamingExperienceSection: React.FC<GamingExperienceSectionProps> = (
           {activeCategories.map((category) => (
             <div
               key={category.id}
-              className="group relative rounded-3xl border border-[#c8d8e4]/15 bg-[#0e181c] p-6 sm:p-8 shadow-2xl transition-all duration-300 hover:border-[#52ab98]/40 hover:-translate-y-1"
+              className="group relative rounded-3xl border border-[#c8d8e4]/15 bg-[#0e181c] p-6 sm:p-8 shadow-2xl transition-all duration-300 hover:border-[#52ab98]/60 hover:-translate-y-2 hover:shadow-[0_15px_35px_-10px_rgba(82,171,152,0.3)] cursor-pointer"
             >
               <div className="flex flex-col sm:flex-row gap-6 items-start">
                 
@@ -49,7 +49,7 @@ export const GamingExperienceSection: React.FC<GamingExperienceSectionProps> = (
                 {/* Content */}
                 <div className="flex-1 space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-heading text-xl font-black uppercase text-white">
+                    <h3 className="font-heading text-xl font-black uppercase text-white transition-colors duration-300 group-hover:text-[#52ab98]">
                       {category.name}
                     </h3>
                   </div>
@@ -71,7 +71,7 @@ export const GamingExperienceSection: React.FC<GamingExperienceSectionProps> = (
                   className="inline-flex items-center gap-1 text-xs font-bold uppercase text-[#52ab98] hover:text-white transition-colors cursor-pointer"
                 >
                   <span>View Setups</span>
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </a>
               </div>
 

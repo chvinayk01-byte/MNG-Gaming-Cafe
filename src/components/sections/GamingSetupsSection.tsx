@@ -57,7 +57,7 @@ export const GamingSetupsSection: React.FC<GamingSetupsSectionProps> = ({
               return (
                 <div
                   key={station.id}
-                  className="group relative overflow-hidden rounded-2xl border border-[#c8d8e4]/15 bg-[#132128] p-5 backdrop-blur-xl transition-all duration-300 hover:border-[#52ab98]/40 shadow-xl flex flex-col justify-between"
+                  className="group relative overflow-hidden rounded-2xl border border-[#c8d8e4]/15 bg-[#132128] p-5 backdrop-blur-xl transition-all duration-300 hover:border-[#52ab98]/60 hover:-translate-y-2 hover:shadow-[0_15px_35px_-10px_rgba(82,171,152,0.3)] shadow-xl flex flex-col justify-between cursor-pointer"
                 >
                   <div>
                     {/* Setup Header & Availability Badge */}

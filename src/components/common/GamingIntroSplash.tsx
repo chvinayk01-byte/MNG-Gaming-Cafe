@@ -124,7 +124,7 @@ export const GamingIntroSplash: React.FC<GamingIntroSplashProps> = ({ onComplete
         {/* Title */}
         <div className="space-y-2 mb-8">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-[#52ab98]/30 bg-[#52ab98]/10 px-3.5 py-1 text-[10px] font-black uppercase tracking-widest text-[#52ab98]">
-            <Zap className="h-3 w-3" /> Premier Gaming Lounge
+            <Zap className="h-3 w-3" /> Premium Gaming Lounge
           </div>
           <h1 className="font-heading text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">
             MNG <span className="text-[#52ab98]">GAMING CAFE</span>
