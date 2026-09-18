@@ -647,15 +647,16 @@ export function getStoreStatus(info: BusinessInfo, hoursList: BusinessDayHours[]
   todayHoursText: string;
 } {
   if (info.statusOverride === 'open') {
-    return { isOpen: true, statusText: 'OPEN NOW (Manual)', todayHoursText: 'Manual Override' };
+    return { isOpen: true, statusText: 'OPEN NOW', todayHoursText: 'Manual Override' };
   }
   if (info.statusOverride === 'closed') {
-    return { isOpen: false, statusText: 'CLOSED (Manual)', todayHoursText: 'Manual Override' };
+    return { isOpen: false, statusText: 'CLOSED NOW', todayHoursText: 'Manual Override' };
   }
 
+  // Calculate open / closed status for Indian Standard Time (Asia/Kolkata timezone)
   const now = new Date();
-  const utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
-  const istTime = new Date(utcMs + (3600000 * 5.5)); // IST is UTC + 5:30
+  const istDateStr = now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  const istTime = new Date(istDateStr);
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const currentDayName = days[istTime.getDay()];
@@ -663,7 +664,7 @@ export function getStoreStatus(info: BusinessInfo, hoursList: BusinessDayHours[]
   const todaySchedule = hoursList.find(h => h.day.toLowerCase() === currentDayName.toLowerCase());
 
   if (!todaySchedule || todaySchedule.isClosed) {
-    return { isOpen: false, statusText: 'CLOSED TODAY', todayHoursText: 'Closed' };
+    return { isOpen: false, statusText: 'CLOSED TODAY', todayHoursText: 'Closed Today' };
   }
 
   const currentMinutes = istTime.getHours() * 60 + istTime.getMinutes();
@@ -682,7 +683,17 @@ export function getStoreStatus(info: BusinessInfo, hoursList: BusinessDayHours[]
   const openMins = parseMinutes(todaySchedule.openTime);
   const closeMins = parseMinutes(todaySchedule.closeTime);
 
-  const isOpen = currentMinutes >= openMins && currentMinutes < closeMins;
+  let isOpen = false;
+  if (closeMins > openMins) {
+    isOpen = currentMinutes >= openMins && currentMinutes < closeMins;
+  } else if (closeMins < openMins) {
+    // Overnight schedule (e.g. 10:00 PM to 02:00 AM)
+    isOpen = currentMinutes >= openMins || currentMinutes < closeMins;
+  } else {
+    // 24 Hours open
+    isOpen = true;
+  }
+
   const todayHoursText = `${todaySchedule.openTime} – ${todaySchedule.closeTime}`;
 
   return {

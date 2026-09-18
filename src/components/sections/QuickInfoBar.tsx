@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star, MessageSquare, MapPin, Clock, X, CheckCircle } from 'lucide-react';
 import { BusinessInfo, BusinessDayHours } from '../../types';
 import { getStoreStatus } from '../../services/storage';
@@ -10,7 +10,14 @@ interface QuickInfoBarProps {
 
 export const QuickInfoBar: React.FC<QuickInfoBarProps> = ({ businessInfo, businessHours }) => {
   const [showHoursModal, setShowHoursModal] = useState(false);
-  const status = getStoreStatus(businessInfo, businessHours);
+  const [status, setStatus] = useState(() => getStoreStatus(businessInfo, businessHours));
+
+  useEffect(() => {
+    const updateStatus = () => setStatus(getStoreStatus(businessInfo, businessHours));
+    updateStatus();
+    const timer = setInterval(updateStatus, 10000);
+    return () => clearInterval(timer);
+  }, [businessInfo, businessHours]);
 
   return (
     <section className="relative z-20 -mt-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

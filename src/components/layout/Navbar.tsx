@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Gamepad2, Menu, X, MapPin, MessageSquare } from 'lucide-react';
 import { BusinessInfo, BusinessDayHours } from '../../types';
 import { getStoreStatus } from '../../services/storage';
@@ -13,7 +13,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   businessHours,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const status = getStoreStatus(businessInfo, businessHours);
+  const [status, setStatus] = useState(() => getStoreStatus(businessInfo, businessHours));
+
+  useEffect(() => {
+    const updateStatus = () => setStatus(getStoreStatus(businessInfo, businessHours));
+    updateStatus();
+    const timer = setInterval(updateStatus, 10000);
+    return () => clearInterval(timer);
+  }, [businessInfo, businessHours]);
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
