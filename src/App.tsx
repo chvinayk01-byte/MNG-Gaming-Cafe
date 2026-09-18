@@ -13,6 +13,7 @@ import { MembershipSection } from './components/sections/MembershipSection';
 import { GallerySection } from './components/sections/GallerySection';
 import { ReviewsSection } from './components/sections/ReviewsSection';
 import { LocationSection } from './components/sections/LocationSection';
+import { FAQSection } from './components/sections/FAQSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminLayout } from './components/admin/AdminLayout';
@@ -173,6 +174,8 @@ export function App() {
 
         <LocationSection businessInfo={businessInfo} />
 
+        <FAQSection businessInfo={businessInfo} />
+
         <ContactSection businessInfo={businessInfo} />
       </main>
 
@@ -180,17 +183,6 @@ export function App() {
       <Footer
         businessInfo={businessInfo}
         businessHours={businessHours}
-        onOpenAdmin={() => setIsAdminLoginOpen(true)}
-      />
-
-      {/* Admin Login Modal */}
-      <AdminLoginModal
-        isOpen={isAdminLoginOpen}
-        onClose={() => setIsAdminLoginOpen(false)}
-        onLoginSuccess={() => {
-          setIsAdminLoginOpen(false);
-          setIsAdminMode(true);
-        }}
       />
     </div>
   );

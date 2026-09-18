@@ -19,14 +19,12 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "additionalType": "https://schema.org/EntertainmentBusiness",
-    "name": businessInfo.name,
-    "alternateName": ["MNG Gaming Cafe Dilsukhnagar", "MNG Esports & Gaming Lounge"],
-    "description": "Premier gaming cafe in Dilsukhnagar, Hyderabad offering high-FPS Esports PC stations, PS5 Pro lounge, snooker table, and board games.",
-    "keywords": "gaming cafe, gaming cafe near me, gaming cafe in hyderabad, gaming cafe dilsukhnagar, best gaming cafe in hyderabad, ps5 gaming cafe hyderabad, pc gaming cafe near me, MNG Gaming Cafe",
+    "name": "MNG Gaming Cafe",
+    "description": "MNG Gaming Cafe in Dilsukhnagar, Hyderabad. Explore gaming, PS5, PC gaming, snooker, board games, pricing, location and more.",
     "image": "https://mnggamingcafe.in/images/mng_lounge_interior.jpg",
-    "@id": "https://mnggamingcafe.in",
-    "url": "https://mnggamingcafe.in",
-    "telephone": businessInfo.phone,
+    "@id": "https://mnggamingcafe.in/",
+    "url": "https://mnggamingcafe.in/",
+    "telephone": "+91 81433 44336",
     "priceRange": "₹100 - ₹700",
     "hasMap": businessInfo.googleMapsUrl,
     "sameAs": [
@@ -34,7 +32,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
     ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "House No. 7-49, Konark Theatre Lane, opposite Satyanarayana Swamy Temple, Gaddiannaram, Madhura Puri Colony",
+      "streetAddress": "House No. 7-49, Konark Theatre Lane, Opposite Satyanarayana Swamy Temple, Gaddiannaram, Madhura Puri Colony",
       "addressLocality": "Dilsukhnagar, Hyderabad",
       "addressRegion": "Telangana",
       "postalCode": "500070",
@@ -42,37 +40,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": businessInfo.coordinates.lat,
-      "longitude": businessInfo.coordinates.lng
-    },
-    "areaServed": [
-      {
-        "@type": "AdministrativeArea",
-        "name": "Dilsukhnagar, Hyderabad"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Gaddiannaram"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Kothapet"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Malakpet"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "LB Nagar"
-      }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": businessInfo.rating.toString(),
-      "reviewCount": businessInfo.reviewCount.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
+      "latitude": 17.3666612,
+      "longitude": 78.5253429
     },
     "openingHoursSpecification": openingHoursSpec,
     "makesOffer": [
@@ -80,28 +49,28 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "High-FPS PC Gaming Battle Station"
+          "name": "PC Gaming Battle Stations"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "PS5 & PS5 Pro Lounge Gaming"
+          "name": "Console & PS5 Lounge Gaming"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Snooker and Pool Table Session"
+          "name": "Snooker & Pool Table"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Board Games Zone (Chess, Jenga)"
+          "name": "Board Games Zone"
         }
       }
     ]

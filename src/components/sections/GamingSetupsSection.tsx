@@ -36,7 +36,7 @@ export const GamingSetupsSection: React.FC<GamingSetupsSectionProps> = ({
             <Cpu className="h-4 w-4" /> Hardware & Stations
           </div>
           <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-5xl">
-            BUILT FOR <span className="text-[#52ab98]">GAMERS</span>
+            PC GAMING & <span className="text-[#52ab98]">HARDWARE SETUPS</span>
           </h2>
           <p className="mt-3 text-sm text-[#c8d8e4]">
             High-performance hardware setups designed for fast response times and competitive play.

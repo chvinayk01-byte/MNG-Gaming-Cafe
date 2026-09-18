@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ businessInfo }) => {
       <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity pointer-events-none">
         <img
           src="/images/mng_lounge_interior.jpg"
-          alt=""
+          alt="MNG Gaming Cafe interior in Dilsukhnagar Hyderabad"
           className="h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0e181c] via-[#0e181c]/80 to-[#0e181c]/50" />
@@ -38,9 +38,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ businessInfo }) => {
           <span>5.0 Star Rated Gaming Lounge in Dilsukhnagar</span>
         </div>
 
-        {/* Hero Title */}
+        {/* Hero Primary H1 Title */}
         <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-tight">
-          PREMIUM <span className="text-[#52ab98]">GAMING CAFE</span> IN HYDERABAD
+          GAMING CAFE IN <span className="text-[#52ab98]">DILSUKHNAGAR, HYDERABAD</span>
         </h1>
 
         {/* Verified Location Subtitle */}

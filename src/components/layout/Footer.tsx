@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { Gamepad2, MapPin, Phone, Clock, ExternalLink, ShieldCheck, MessageSquare } from 'lucide-react';
+import { Gamepad2, MapPin, Phone, Clock, ExternalLink, MessageSquare } from 'lucide-react';
 import { BusinessInfo, BusinessDayHours } from '../../types';
 
 interface FooterProps {
   businessInfo: BusinessInfo;
   businessHours: BusinessDayHours[];
-  onOpenAdmin: () => void;
+  onOpenAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   businessInfo,
   businessHours,
-  onOpenAdmin,
 }) => {
   const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
 
@@ -57,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({
               Navigation
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
-              {['Home', 'Gaming', 'Setups', 'Pricing', 'Games', 'Gallery', 'Contact'].map((item) => (
+              {['Home', 'Gaming', 'Setups', 'Pricing', 'Games', 'Gallery', 'FAQ', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
@@ -128,14 +127,11 @@ export const Footer: React.FC<FooterProps> = ({
           <p>© 2026 MNG Gaming Cafe. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
-            <button onClick={() => setModalType('privacy')} className="hover:text-[#52ab98]">
+            <button onClick={() => setModalType('privacy')} className="hover:text-[#52ab98] cursor-pointer">
               Privacy Policy
             </button>
-            <button onClick={() => setModalType('terms')} className="hover:text-[#52ab98]">
+            <button onClick={() => setModalType('terms')} className="hover:text-[#52ab98] cursor-pointer">
               Terms & Conditions
-            </button>
-            <button onClick={onOpenAdmin} className="text-[#2b6777] hover:text-[#52ab98] hover:underline flex items-center gap-1 cursor-pointer font-bold">
-              <ShieldCheck className="h-3.5 w-3.5" /> Admin System
             </button>
           </div>
         </div>

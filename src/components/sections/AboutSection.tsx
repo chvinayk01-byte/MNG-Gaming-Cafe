@@ -21,7 +21,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ businessInfo }) => {
             <div className="relative z-10 overflow-hidden rounded-3xl border border-[#c8d8e4]/15 bg-[#15242b]/80 p-3 backdrop-blur-xl shadow-2xl">
               <img
                 src="/images/mng_lounge_interior.jpg"
-                alt="MNG Gaming Hub Lounge Interior"
+                alt="MNG Gaming Cafe interior in Dilsukhnagar Hyderabad"
                 className="h-80 w-full rounded-2xl object-cover sm:h-96"
               />
 
@@ -49,8 +49,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ businessInfo }) => {
             </div>
 
             <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-4xl lg:text-5xl leading-tight">
-              YOUR LOCAL <br />
-              <span className="text-[#52ab98]">GAMING HUB</span>
+              THE MNG <span className="text-[#52ab98]">GAMING EXPERIENCE</span>
             </h2>
 
             <p className="text-base text-[#c8d8e4] leading-relaxed font-medium">

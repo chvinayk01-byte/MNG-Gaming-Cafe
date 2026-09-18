@@ -21,7 +21,7 @@ export const GamingExperienceSection: React.FC<GamingExperienceSectionProps> = (
             <Sparkles className="h-4 w-4" /> Gaming Lounge & Battle Stations
           </div>
           <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-5xl">
-            CHOOSE YOUR <span className="text-[#52ab98]">GAMING ARENA</span>
+            CONSOLE & <span className="text-[#52ab98]">LOUNGE GAMING</span>
           </h2>
           <p className="mt-3 text-sm text-[#c8d8e4]/90">
             From high FPS competitive PC gaming to sofa console lounge sessions in Dilsukhnagar.

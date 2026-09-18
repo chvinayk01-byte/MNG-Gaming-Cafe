@@ -20,7 +20,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans, businessI
             <Tag className="h-4 w-4" /> Pricing & Packages
           </div>
           <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-5xl">
-            PRICING & <span className="text-[#52ab98]">RATES MENU</span>
+            GAMING CAFE <span className="text-[#52ab98]">PRICING</span>
           </h2>
           <p className="mt-3 text-sm text-[#c8d8e4]">
             Official rates for PC Gaming, PS5, PS5 Pro, Snooker & Board Games at MNG Gaming Cafe.

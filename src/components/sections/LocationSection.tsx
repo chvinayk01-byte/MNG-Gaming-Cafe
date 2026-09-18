@@ -17,7 +17,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ businessInfo }
             <MapPin className="h-4 w-4" /> Dilsukhnagar Lounge
           </div>
           <h2 className="font-heading text-3xl font-black uppercase text-white sm:text-5xl">
-            FIND <span className="text-[#52ab98]">US</span>
+            FIND <span className="text-[#52ab98]">MNG GAMING CAFE</span>
           </h2>
           <p className="mt-3 text-sm text-[#c8d8e4]">
             Conveniently located near Konark Theatre Lane in Dilsukhnagar, Hyderabad.
