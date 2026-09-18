@@ -20,10 +20,18 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
     "@type": "LocalBusiness",
     "additionalType": "https://schema.org/EntertainmentBusiness",
     "name": businessInfo.name,
-    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    "alternateName": ["MNG Gaming Cafe Dilsukhnagar", "MNG Esports & Gaming Lounge"],
+    "description": "Premier gaming cafe in Dilsukhnagar, Hyderabad offering high-FPS Esports PC stations, PS5 Pro lounge, snooker table, and board games.",
+    "keywords": "gaming cafe, gaming cafe near me, gaming cafe in hyderabad, gaming cafe dilsukhnagar, best gaming cafe in hyderabad, ps5 gaming cafe hyderabad, pc gaming cafe near me, MNG Gaming Cafe",
+    "image": "https://mnggamingcafe.in/images/mng_lounge_interior.jpg",
     "@id": "https://mnggamingcafe.in",
     "url": "https://mnggamingcafe.in",
     "telephone": businessInfo.phone,
+    "priceRange": "₹100 - ₹700",
+    "hasMap": businessInfo.googleMapsUrl,
+    "sameAs": [
+      businessInfo.googleMapsUrl
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "House No. 7-49, Konark Theatre Lane, opposite Satyanarayana Swamy Temple, Gaddiannaram, Madhura Puri Colony",
@@ -37,6 +45,28 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
       "latitude": businessInfo.coordinates.lat,
       "longitude": businessInfo.coordinates.lng
     },
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Dilsukhnagar, Hyderabad"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Gaddiannaram"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Kothapet"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Malakpet"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "LB Nagar"
+      }
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": businessInfo.rating.toString(),
@@ -44,7 +74,37 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ businessInfo, businessHours })
       "bestRating": "5",
       "worstRating": "1"
     },
-    "openingHoursSpecification": openingHoursSpec
+    "openingHoursSpecification": openingHoursSpec,
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "High-FPS PC Gaming Battle Station"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "PS5 & PS5 Pro Lounge Gaming"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Snooker and Pool Table Session"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Board Games Zone (Chess, Jenga)"
+        }
+      }
+    ]
   };
 
   return (
